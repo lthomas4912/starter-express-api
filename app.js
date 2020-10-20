@@ -26,9 +26,10 @@ app.use((req,res, next) => {
 });
 
 
-// Express middleware
+// Error middleware
 // Error handler must have four parameters. That's how express knows what function to pass it too
 // using the next function
+// 
 app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.json({
