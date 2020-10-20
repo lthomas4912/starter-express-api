@@ -1,36 +1,26 @@
 const express = require('express');
 const app = express();
-const fs = require('fs');
-const axios = require('axios');
-const baseURL = 'https://officeapi.dev/api/';
-const resources = ['quotes', 'characters', 'episodes', 'crew'];
+const routes = require('./routes');
 
 
-// Collecting data from the API and placing in folder
 
-resources.forEach(resource => {
-    console.log(resource)
-    let dataSaved = (err) => err ? console.log(err) : console.log(`${resource}Data.json Saved!`)
-    axios.get(baseURL + resource)
-        .then(res => {
-            let { data } = res.data;
-            let jsonData = JSON.stringify(data);
-            let fileName = `${resource}Data.json`;
-            let path = `./data/${fileName}`;
-            fs.writeFile(path, jsonData, dataSaved);
-        })
-        .catch(err => console.log(err));
+app.use(express.json());
+app.use('/https://officeapi.dev/api/', routes);
+
+
+
+app.use( ( req, res, next) => {
+   const err = new Error('Not Found');
+   err.status = 404;
 });
 
-//Aggreating the data into folders and in JSON format.
-
-axios.get(baseURL)
-    // .then(res => res.json())
-    .then( res => {
-        console.log(res.data.data);
-        let { data } = res.data;
-        let dataSaved = (err) => err ? console.log(err) : console.log(`data.json Saved!`);
-        let jsonData = JSON.stringify(data)
-        fs.writeFile('./data.json', jsonData, dataSaved);
+app.use( (err, req, res, next) => {
+    res.status(err.status || 500);
+    res.json({
+        error: {
+            message: err.message
+        }
     })
-    .catch(err => console.log(err))
+});
+
+app.listen(3000, () => console.log("The Office API listening on port 3000"));
