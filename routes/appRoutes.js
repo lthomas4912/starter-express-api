@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router(); //Router constructor
-const quotesRoutes = require('./quotesRoutes')
+const quotesRoutes = require('./quotesRoutes');
 
-router.use("/quotes", quotesRoutes)
+router.use("/quotes", quotesRoutes);
 
 
 

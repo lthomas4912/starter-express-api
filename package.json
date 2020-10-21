@@ -2,7 +2,7 @@
   "name": "the-office-api",
   "version": "1.0.0",
   "description": "This is an api of The Office quotes from main actors",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "start": "nodemon ./app"
   },

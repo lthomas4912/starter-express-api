@@ -20,7 +20,6 @@ resources.forEach(resource => {
         .catch(err => console.log(err));
 });
 
-//Aggreating the data into folders and in JSON format.
 
 axios.get(baseURL)
     // .then(res => res.json())
