@@ -4,7 +4,7 @@
   "description": "This is an api of The Office quotes from main actors",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon ./app"
   },
   "repository": {
     "type": "git",
